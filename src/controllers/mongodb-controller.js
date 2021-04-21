@@ -68,8 +68,9 @@ const remove = (req, res) => {
     try {
         const {params: {id}, query} = req
         const database = mongoose.connection.collection(id)
+        const _id = new ObjectID(query.id)
         database
-            .deleteOne(query)
+            .deleteOne({_id: _id})
             .then((response) => {
                 res.status(200).send({returnCode: 1, message: 'Deletado'})
             })

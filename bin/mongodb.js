@@ -1,12 +1,13 @@
+require('dotenv').config()
 const app = require('../src/app')
 const http = require('http')
 
 const httpServer = http.createServer(app)
 
-httpServer.listen(3001)
+httpServer.listen(process.env.PORT)
 httpServer.on('error', onError)
 
-console.log('API rodando ...')
+console.log('API MongoDB rodando')
 
 function onError(error) {
     if (error.syscall !== 'listen')
