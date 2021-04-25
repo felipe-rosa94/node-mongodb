@@ -2,12 +2,11 @@ require('dotenv').config()
 const mongoose = require('mongoose')
 const express = require('express')
 const cors = require('cors')
-
+const {DB_MONGO} = process.env
 const app = express()
 app.use(cors({origin: '*'}))
-app.use(express.json({type: ['application/json', 'text/plain']}))
-
-mongoose.connect(process.env.DB_MONGO, {useNewUrlParser: true})
+app.use(express.json({limit: '50mb', type: ['application/json', 'text/plain']}))
+mongoose.connect(DB_MONGO, {useNewUrlParser: true})
 mongoose.connection.on('open', () => {
     console.log('conectado')
 })
